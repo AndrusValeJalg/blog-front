@@ -9,9 +9,11 @@ const auth = useAuthStore()
 let email = ref('');
 let password = ref('');
 let confirmPassword = ref('');
+let name = ref('');
+
 async function register(){
     if(password.value === confirmPassword.value){
-        await auth.register(email.value, password.value);
+        await auth.register(email.value, name.value, password.value, confirmPassword.value);
         router.push('/');
     } else {
         console.error("Passwords do not match");
@@ -24,6 +26,9 @@ async function register(){
     <div class="container">
     <b-field label="Email">
             <b-input type="email" v-model="email"></b-input>
+    </b-field>
+    <b-field label="Name">
+            <b-input type="name" v-model="name"></b-input>
     </b-field>
     <b-field label="Password">
         <b-input type="password" v-model="password"></b-input>
